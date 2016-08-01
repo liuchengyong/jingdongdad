@@ -1,0 +1,42 @@
+{
+  "name": "folk-dreammenitor",
+  "version": "1.0.0",
+  "description": "dream menitor page ",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "grunt test",
+    "start": "grunt dev",
+    "build": "grunt build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@123.57.152.76:teamfrontend/dreammentor.git"
+  },
+  "author": "liuchengyong",
+  "license": "ISC",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-autoprefixer": "^3.0.4",
+    "grunt-browser-sync": "^2.2.0",
+    "grunt-browserify": "^5.0.0",
+    "grunt-concurrent": "^2.3.0",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-cssmin": "^1.0.1",
+    "grunt-contrib-htmlmin": "^2.0.0",
+    "grunt-contrib-imagemin": "^1.0.1",
+    "grunt-contrib-uglify": "^2.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-sass": "^1.2.0",
+    "grunt-sass-globber": "^2.0.1",
+    "grunt-sync": "^0.5.2",
+    "grunt-text-replace": "^0.4.0",
+    "jit-grunt": "^0.10.0",
+    "load-grunt-configs": "^1.0.0",
+    "load-grunt-tasks": "^3.5.0",
+    "time-grunt": "^1.4.0"
+  }
+}
