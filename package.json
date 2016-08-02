@@ -40,6 +40,7 @@
     "time-grunt": "^1.4.0"
   },
   "dependencies": {
+    "fastclick": "^1.0.6",
     "gsap": "^1.19.0",
     "jquery": "^3.1.0"
   }

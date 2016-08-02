@@ -2,7 +2,9 @@
 var deviceAdapter = require('../common/deviceAdapter');
 var TweenMax = require('gsap');
 var $ = require('jquery');
-// console.log(TweenLite);
+var attachFastClick = require('fastclick');
+
+
 (function(){
 	'use strict';
 	var root = window;
@@ -18,15 +20,33 @@ var $ = require('jquery');
 		pageLoad:function(){
 			deviceAdapter.setFrontSize();
 			var imgs = document.querySelectorAll('img');
+			loadImage(imgs,0,this.pageStart.bind(this));
+		},
+		btnStartInit:function(){
 			var S_width = $(window).width();
 			var S_height = $(window).height();
-			// $('.page').css({width:S_width+"px",height:S_height+'px'});
-			loadImage(imgs,0,this.pageStart.bind(this));
-			$('#share').on('click',this.share.hide);
+			var left = 206*S_width/750;
+			var bottom = 66*S_height/1334;
+			var width = 323*S_width/750;
+			var height = 89*S_height/1334;
+			$('#btnStart').css({
+				left:left+'px',
+				bottom:bottom+'px',
+				width:width+'px',
+				height:height+'px'
+			});
+			var $this = this;
+			$('#btnStart').on('click',function(){
+				$('#q1').css('display','block');
+				$this.showQuestion($('#q1'),1);
+			});
 		},
 		pageStart:function(){
+			attachFastClick(document.body);
 			$('#load').css('display','none');
-			this.showQuestion($('#q1'),1);
+			$('#main').css('display','block');
+			$('#share').on('click',this.share.hide);
+			this.btnStartInit();
 		},
 		showQuestion:function(element,index){
 			// console.log(element);
