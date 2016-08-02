@@ -23,8 +23,8 @@ var attachFastClick = require('fastclick');
 			loadImage(imgs,0,this.pageStart.bind(this));
 		},
 		btnStartInit:function(){
-			var S_width = $(window).width();
-			var S_height = $(window).height();
+			var S_width = $(window).width() > 500 ? 500 : $(window).width();
+			var S_height = $(window).width() > 500 ? 890 : $(window).height();
 			var left = 206*S_width/750;
 			var bottom = 66*S_height/1334;
 			var width = 323*S_width/750;
@@ -50,12 +50,12 @@ var attachFastClick = require('fastclick');
 		},
 		showQuestion:function(element,index){
 			// console.log(element);
-			TweenMax.from(element.find('.question-title'),0.5,{y:500,delay:0});
-			TweenMax.from(element.find('.question-text'),0.5,{y:500,delay:0.1});
-			TweenMax.from(element.find('.question-gif'),0.5,{y:500,delay:0.2});
-			TweenMax.from(element.find('.qestion-a'),0.5,{y:500,delay:0.3});
-			TweenMax.from(element.find('.qestion-b'),0.5,{y:500,delay:0.4});
-			TweenMax.from(element.find('.qestion-c'),0.5,{y:500,delay:0.5});
+			TweenMax.from(element.find('.question-title'),0.5,{y:1000,delay:0});
+			TweenMax.from(element.find('.question-text'),0.5,{y:1000,delay:0.1});
+			TweenMax.from(element.find('.question-gif'),0.5,{y:1000,delay:0.2});
+			TweenMax.from(element.find('.qestion-a'),0.5,{y:1000,delay:0.3});
+			TweenMax.from(element.find('.qestion-b'),0.5,{y:1000,delay:0.4});
+			TweenMax.from(element.find('.qestion-c'),0.5,{y:1000,delay:0.5});
 			element.off();
 			element.on('click',this.clickNextQuestion.bind(this,index));
 		},
