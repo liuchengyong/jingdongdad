@@ -136,8 +136,8 @@ var attachFastClick = require('fastclick');
 })();
 
 function loadImage(list,index,callback){
-	var img = new Image();
-	img.src = list[index].src;
+	var img = list[index];
+	img.src = img.dataset.src;
 	img.onload = function(){
 		// console.log(`第${index}张,${this.src}加载完毕`);
 		if(index >= list.length - 1){
