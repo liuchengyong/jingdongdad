@@ -19,7 +19,7 @@ var attachFastClick = require('fastclick');
 			// this.showResult($('#r4'));
 		},
 		pageLoad:function(){
-			var imgs = document.querySelectorAll('img');
+			var imgs = document.querySelectorAll('img[data-src]');
 			loadImage(imgs,0,this.pageStart.bind(this));
 		},
 		btnStartInit:function(){
@@ -139,6 +139,7 @@ function loadImage(list,index,callback){
 	var $img = $(list[index]);
 	$img.attr('src',$img.attr('data-src'));
 	$img.on('load',function(){
+		// $('#blog').text(`第${index}张,${this.src}加载完毕`)
 		// console.log(`第${index}张,${this.src}加载完毕`);
 		if(index >= list.length - 1){
 			// console.log("全部加载完毕");
