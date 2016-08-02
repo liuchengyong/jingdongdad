@@ -14,11 +14,11 @@ var attachFastClick = require('fastclick');
 		resizeTimer : null,
 		answerList:[],
 		initialize: function(){
+			deviceAdapter.setFrontSize();
 			root.addEventListener('load',this.pageLoad.bind(this),false);
 			// this.showResult($('#r4'));
 		},
 		pageLoad:function(){
-			deviceAdapter.setFrontSize();
 			var imgs = document.querySelectorAll('img');
 			loadImage(imgs,0,this.pageStart.bind(this));
 		},
@@ -136,9 +136,9 @@ var attachFastClick = require('fastclick');
 })();
 
 function loadImage(list,index,callback){
-	var img = list[index];
-	img.src = img.dataset.src;
-	img.onload = function(){
+	var $img = $(list[index]);
+	$img.attr('src',$img.attr('data-src'));
+	$img.on('load',function(){
 		// console.log(`第${index}张,${this.src}加载完毕`);
 		if(index >= list.length - 1){
 			// console.log("全部加载完毕");
@@ -146,7 +146,7 @@ function loadImage(list,index,callback){
 			return;
 		}
 		loadImage(list,++index,callback);
-	};
+	});
 }
 
 App.initialize();
