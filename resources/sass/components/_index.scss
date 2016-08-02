@@ -1,7 +1,43 @@
+.loading{
+	position: fixed;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: #06a7f2;
+	img{
+		position: absolute;
+		top:50%;
+		left: 50%;
+		display: block;
+		width: 2.1rem;
+		height: 2.4rem;	
+		margin-top: -1.2rem;
+		margin-left: -1.05rem;
+	}
+}
+
+.share{
+	position: fixed;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: rgba(0,0,0,0.8);
+	z-index: 2000;
+	display: none;
+	img{
+		position: absolute;
+		top:0;
+		left: 0;
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+}
 .container{
 	position: absolute;
 	display: block;
-	background-color: #06a7f2;
 	width: 100%;
 	height: 100%;
 }
@@ -10,12 +46,14 @@
 	display: none;
 	width: 100%;
 	height: 100%;
+	overflow: hidden;
+	background-color: #06a7f2;
 }
 
 
 // -----  第一页  -----------
 .main{
-	// display: block;
+	display: none;
 	background-image: url(../images/main-back.png);
 	background-size: 100% auto;
 	background-repeat: no-repeat;
@@ -53,12 +91,22 @@
 }
 
 
-
+// 问题
+.question{
+	position: absolute;
+	display: none;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	background-color: #06a7f2;
+}
 .question-title{
 	position: absolute;
 	top: 0.7rem;
 	padding: 0 1.5rem; 
 	width: 5.05rem;
+	left: 50%;
+	margin-left: -2.52rem;
 	&:before{
 		position: absolute;
 		display: block;
@@ -92,55 +140,216 @@
 }
 
 .question-text{
-	margin: 0.18rem auto 0;
-	width:6.76rem;
-	height: 1.81rem; 
+	top:2.25rem;
+	left: 50%;
+}
+.question-gif{
+	width:100%;
+	height: auto; 
+	left: 0;
+	top:0;
+}
+.qestion-a,
+.qestion-b,
+.qestion-c{
+	width: 5.72rem;
+	height: 1.3rem;
+	left: 50%;
+	margin-left: -2.86rem;
 }
 .qestion-a{
-	margin: 4.2rem auto 0;
-	width: 5.72rem;
-	height: 1.3rem;
+	bottom: 3.34rem;
 }
 .qestion-b{
-	margin: 0.25rem auto 0;
-	width: 5.72rem;
-	height: 1.3rem;
+	bottom: 1.95rem;
 }
 .qestion-c{
-	margin: 0.25rem auto 0;
-	width: 5.72rem;
-	height: 1.31rem;
+	bottom:0.5rem;  
 }
 
-// -----   第一个问题  -----------
+// -----  问题详情    -----------
+.question-1,
+.question-2,
+.question-3,
+.question-4,
+.question-5,
+.question-6{
+	display: none;	
+	img{
+		position: absolute; 
+		display: block;
+	}
+}
 .question-1{
-	// display: block;	
-	img{
-		position: relative;
-		display: block;
+	display: block;
+	.question-text{
+		width:6.76rem;
+		height: 1.81rem; 
+		margin-left: -3.38rem;
 	}
 }
-// -----   第二个问题  -----------
+
 .question-2{
-	// display: block;	
-	img{
-		position: relative;
-		display: block;
+	.question-text{
+		width:5.96rem;
+		height: 1.87rem; 
+		margin-left: -2.98rem;
 	}
 }
-// -----   第三个问题  -----------
 .question-3{
-	// display: block;	
+	.question-text{
+		width:4.68rem;
+		height: 1.95rem; 
+		margin-left: -2.34rem;
+	}
+}
+.question-4{
+	.question-text{
+		width:4.28rem;
+		height: 1.92rem; 
+		margin-left: -2.14rem;
+	}
+}
+
+.question-5{
+	.question-text{
+		width:6.38rem;
+		height: 1.89rem; 
+		margin-left: -3.19rem;
+	}
+}
+
+.question-6{
+	.question-text{
+		width:4.79rem;
+		height: 2rem; 
+		margin-left: -2.39rem;
+	}
+}
+// -----  结果    -----------
+.result{
+	position: absolute;
+	display: none;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+.result-head{
+	top:0.5rem;
+	width:5.8rem;
+	height: 2.2rem; 
+	left: 50%;
+	margin-left: -2.9rem;
+}
+.result-title{
+	position: absolute;
+	top: 2.23rem;
+	width: 7.18rem;
+	height: 1.63rem;
+	left: 50%;
+	margin-left: -3.59rem;
+	background-image: url(../images/r-1-g.png);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	.result-title-text{
+		top:0.5rem;
+		display: block;
+		left: 50%;
+	}
+}
+.result-gif{
+	width:100%;
+	height: auto; 
+	left: 0;
+	top:0;
+}
+.result-award{
+	bottom: 2.75rem;
+	left: 50%;
+	margin-left:-3.26rem;
+	width: 6.52rem;
+	height: 2.99rem; 
+}
+.result-share{
+	bottom: 1.6rem;
+	left: 1rem;
+	width: 2.78rem;
+	height: 1.04rem;
+}
+.result-again{
+	bottom: 1.6rem;
+	right: 1rem;
+	width: 2.78rem;
+	height: 1.04rem;
+}
+.result-shop{
+	bottom: 0.5rem;
+	width: 5.53rem;
+	height: 1.03rem;
+	left: 1rem;
+}
+
+// -----  结果详情    -----------
+.result-1,
+.result-2,
+.result-3,
+.result-4{
+	display: none;	
 	img{
-		position: relative;
+		position: absolute; 
 		display: block;
 	}
 }
-// -----   第四个问题  -----------
-.question-4{
-	display: block;	
-	img{
-		position: relative;
-		display: block;
-	}
+.result-1{
+	background-color: #a0db4a;
+	// display: block;	
+	.result-title{
+		.result-title-text{
+			width: 4.5rem;
+			height: 0.57rem;
+			margin-left: -2.25rem;
+		}
+	}	
+}
+.result-2{
+	background-color: #19b3fa;
+	// display: block;	
+	.result-title{
+		.result-title-text{
+			top:0.6rem;
+			width: 3.19rem;
+			height: 0.56rem;
+			margin-left: -1.6rem;
+		}
+	}	
+}
+.result-3{
+	background-color: #f8a23d;
+	// display: block;
+	.result-title{
+		.result-title-text{
+			width: 4.34rem;
+			height: 0.22rem;
+			margin-left: -2.17rem;
+		}
+	}		
+}
+.result-4{
+	background-color: #dc362e;
+	// display: block;	
+	.result-title{
+		background: none;
+		left: 0;
+		margin:0;
+		width: 100%;
+		height: 1.95rem;
+		.result-title-text{
+			top:0;
+			width: 7.18rem;
+			height: 1.95rem;
+			left: 50%;
+			margin-left: -3.59rem;
+		}	
+	}		
 }
