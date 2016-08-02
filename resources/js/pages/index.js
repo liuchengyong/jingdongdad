@@ -14,11 +14,11 @@ var attachFastClick = require('fastclick');
 		resizeTimer : null,
 		answerList:[],
 		initialize: function(){
-			deviceAdapter.setFrontSize();
 			root.addEventListener('load',this.pageLoad.bind(this),false);
 			// this.showResult($('#r4'));
 		},
 		pageLoad:function(){
+			deviceAdapter.setFrontSize();
 			var imgs = document.querySelectorAll('img[data-src]');
 			loadImage(imgs,0,this.pageStart.bind(this));
 		},
