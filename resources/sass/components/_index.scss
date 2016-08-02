@@ -55,10 +55,10 @@
 
 
 .question-title{
-	position: relative;
+	position: absolute;
+	top: 0.7rem;
 	padding: 0 1.5rem; 
 	width: 5.05rem;
-	margin: 0.7rem auto 0;
 	&:before{
 		position: absolute;
 		display: block;

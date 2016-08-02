@@ -1,6 +1,7 @@
 
 var deviceAdapter = require('../common/deviceAdapter');
-
+var TweenMax = require('gsap');
+console.log(TweenLite);
 (function(){
 	'use strict';
 	var root = window;
@@ -10,12 +11,16 @@ var deviceAdapter = require('../common/deviceAdapter');
 		resizeTimer : null,
 		initialize: function(){
 			root.addEventListener('load',this.pageLoad,false);
-			root.addEventListener('resize',this.pageResize,false);
+			this.showQuestion(document.getElementById('q4'));
 		},
 		pageLoad:function(){
 			deviceAdapter.setFrontSize();
 		},
-
+		showQuestion:function(element){
+			var title = element.querySelector('.question-title');
+			// TweenMax.from(title,2,{'margin-top':'1000px'});
+			
+		},
 
 	};
 })();

@@ -38,5 +38,8 @@
     "load-grunt-configs": "^1.0.0",
     "load-grunt-tasks": "^3.5.0",
     "time-grunt": "^1.4.0"
+  },
+  "dependencies": {
+    "gsap": "^1.19.0"
   }
 }
