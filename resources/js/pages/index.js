@@ -50,17 +50,36 @@ var attachFastClick = require('fastclick');
 		},
 		showQuestion:function(element,index){
 			// console.log(element);
+			element.css('display','block');
 			TweenMax.from(element.find('.question-title'),0.5,{y:1000,delay:0});
 			TweenMax.from(element.find('.question-text'),0.5,{y:1000,delay:0.1});
 			TweenMax.from(element.find('.question-gif'),0.5,{y:1000,delay:0.2});
 			TweenMax.from(element.find('.qestion-a'),0.5,{y:1000,delay:0.3});
 			TweenMax.from(element.find('.qestion-b'),0.5,{y:1000,delay:0.4});
 			TweenMax.from(element.find('.qestion-c'),0.5,{y:1000,delay:0.5});
-			element.off();
+			
 			element.on('click',this.clickNextQuestion.bind(this,index));
+		},
+		hideQuestion:function(element,callback){
+			TweenMax.to(element.find('.question-title'),0.5,{y:-1000,delay:0});
+			TweenMax.to(element.find('.question-text'),0.5,{y:-1000,delay:0.1});
+			TweenMax.to(element.find('.question-gif'),0.5,{y:-1000,delay:0.2});
+			TweenMax.to(element.find('.qestion-a'),0.5,{y:-1000,delay:0.3});
+			TweenMax.to(element.find('.qestion-b'),0.5,{y:-1000,delay:0.4});
+			TweenMax.to(element.find('.qestion-c'),0.5,{y:-1000,delay:0.5,onComplete:callback});
+			element.off();
+		},
+		resetQuestion:function(element){
+			TweenMax.set(element.find('.question-title'),{y:0});
+			TweenMax.set(element.find('.question-text'),{y:0});
+			TweenMax.set(element.find('.question-gif'),{y:0});
+			TweenMax.set(element.find('.qestion-a'),{y:0});
+			TweenMax.set(element.find('.qestion-b'),{y:0});
+			TweenMax.set(element.find('.qestion-c'),{y:0});
 		},
 		clickNextQuestion:function(index,event){
 			var $target = $(event.target);
+			var $this = this;
 			if($target.hasClass('qestion-a')){
 				this.answerList.push('A');
 			}else if($target.hasClass('qestion-b')){
@@ -70,17 +89,28 @@ var attachFastClick = require('fastclick');
 			}else{
 				return;
 			}
+			TweenMax.to($target,0.1,{y:10,opacity:0.8,onComplete:function(){
+				if(index < 6){
+					$this.hideQuestion($('#q' + index),function(){
+						$('#q' + index).css('display','none');
+						TweenMax.set($target,{y:0,opacity:1});
+						$this.resetQuestion($('#q' + index));
+						index++;
+						$('#q' + index).css('display','block');
+						$this.showQuestion($('#q' + index),index);
+					})
+					
+				}else{
+					$this.hideQuestion($('#q' + index),function(){
+						$('#q' + index).css('display','none');
+						TweenMax.set($target,{y:0,opacity:1});
+						$this.resetQuestion($('#q' + index));
+						console.log($this.answerList);
+						$this.checkResult($this.answerList);
+					});
+				}
+			}});
 			
-			if(index < 6){
-				$('#q' + index).css('display','none');
-				index++;
-				$('#q' + index).css('display','block');
-				this.showQuestion($('#q' + index),index);
-			}else{
-				$('#q' + index).css('display','none');
-				console.log(this.answerList);
-				this.checkResult(this.answerList);
-			}
 		},
 		checkResult:function(list){
 			if(list[0] === 'C'){
@@ -141,11 +171,14 @@ function loadImage(list,index,callback){
 	$img.on('load',function(){
 		// $('#blog').text(`第${index}张,${this.src}加载完毕`)
 		// console.log(`第${index}张,${this.src}加载完毕`);
+		var porgrass = Math.round((index+1)*100/list.length);
+		$('#loading-porgrass').text(porgrass + '%');
 		if(index >= list.length - 1){
 			// console.log("全部加载完毕");
 			callback();
 			return;
 		}
+
 		loadImage(list,++index,callback);
 	});
 }
