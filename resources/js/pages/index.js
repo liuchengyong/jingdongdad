@@ -173,7 +173,7 @@ var attachFastClick = require('fastclick');
 
 function loadImage(list,index,callback){
 	var $img = $(list[index]);
-	console.log('http://obbbnmuwc.bkt.clouddn.com' + $img.attr('data-src'));
+	// console.log('http://obbbnmuwc.bkt.clouddn.com' + $img.attr('data-src'));
 	$img.attr('src','http://obbbnmuwc.bkt.clouddn.com' + $img.attr('data-src'));
 	$img.on('load',function(){
 		// $('#blog').text(`第${index}张,${this.src}加载完毕`)

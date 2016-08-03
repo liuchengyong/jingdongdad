@@ -89,10 +89,14 @@
 .main{
 	display: none;
 	width: 100%;
+	background-image: url(http://obbbnmuwc.bkt.clouddn.com/main-back.gif);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
 	img{
-		display: block;
-		width: 100%;
+		position: absolute;
 		height: 100%;
+		width: auto;
+		top:0;
 	}
 	.btn_start{
 		position: absolute;
