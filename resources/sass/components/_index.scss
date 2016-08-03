@@ -157,8 +157,8 @@
 	left: 50%;
 }
 .question-gif{
-	width:100%;
-	height: auto; 
+	width: auto;
+	height: 100%; 
 	left: 0;
 	top:0;
 }
@@ -272,8 +272,8 @@
 	}
 }
 .result-gif{
-	width:100%;
-	height: auto; 
+	width: auto;
+	height: 100%; 
 	left: 0;
 	top:0;
 }
@@ -284,23 +284,33 @@
 	width: 6.52rem;
 	height: 2.99rem; 
 }
-.result-share{
+.btn-box{
+	position: absolute;
 	bottom: 1.6rem;
-	left: 1rem;
-	width: 2.78rem;
+	width: 5.56rem;
 	height: 1.04rem;
+	left: 50%;
+	margin-left: -2.78rem;
+	.result-share{
+		position: relative;
+		float: left;
+		width: 2.78rem;
+		height: 1.04rem;
+	}
+	.result-again{
+		position: relative;
+		float: left;
+		width: 2.78rem;
+		height: 1.04rem;
+	}
 }
-.result-again{
-	bottom: 1.6rem;
-	right: 1rem;
-	width: 2.78rem;
-	height: 1.04rem;
-}
+
 .result-shop{
 	bottom: 0.5rem;
-	width: 5.53rem;
-	height: 1.03rem;
-	left: 1rem;
+	width: 5.56rem;
+	height: 1.04rem;
+	left: 50%;
+	margin-left: -2.78rem;
 }
 
 // -----  结果详情    -----------

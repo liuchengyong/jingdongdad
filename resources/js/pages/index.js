@@ -29,6 +29,12 @@ var attachFastClick = require('fastclick');
 		btnStartInit:function(){
 			var S_width = $(window).width() > 500 ? 500 : $(window).width();
 			var S_height = $(window).width() > 500 ? 890 : $(window).height();
+
+			var imgLeft = (S_width - 750*S_height/1334)/2;
+			$('#main img').css('left',imgLeft+'px');
+			$('.question-gif').css('left',imgLeft+'px');
+			$('.result-gif').css('left',imgLeft+'px');
+
 			var left = 206*S_width/750;
 			var bottom = 66*S_height/1334;
 			var width = 323*S_width/750;
