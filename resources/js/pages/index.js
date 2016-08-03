@@ -13,6 +13,10 @@ var attachFastClick = require('fastclick');
 		version : '0.0.1',
 		resizeTimer : null,
 		answerList:[],
+		question:['怀宝宝的时候，Ta每天会踢妈妈的肚子几次？','当宝宝跑远了，你最后是怎么抓住Ta的','宝宝最爱玩的球类是？',
+		'给宝宝洗澡的时候，Ta','什么时候，你发现宝宝的弹跳能力很出色？','你是怎么发现宝宝有耐力的？'],
+		results:['我的宝宝未来会拯救中国足球，来测测你的宝宝是什么奥运冠军','我的宝宝未来会成为游泳奥运冠军，来测测你的宝宝是什么奥运冠军',
+		'我的宝宝未来会成为田径奥运冠军，来测测你的宝宝是什么奥运冠军','宝宝还有惊人潜能等你开发，来测测你的宝宝是什么奥运冠军'],
 		initialize: function(){
 			root.addEventListener('load',this.pageLoad.bind(this),false);
 			// this.showResult($('#r4'));
@@ -50,6 +54,7 @@ var attachFastClick = require('fastclick');
 		},
 		showQuestion:function(element,index){
 			// console.log(element);
+			document.title = this.question[index-1];
 			element.css('display','block');
 			TweenMax.from(element.find('.question-title'),0.5,{y:1000,delay:0});
 			TweenMax.from(element.find('.question-text'),0.5,{y:1000,delay:0.1});
@@ -114,26 +119,21 @@ var attachFastClick = require('fastclick');
 		},
 		checkResult:function(list){
 			if(list[0] === 'C'){
-				document.title = '我的宝宝未来会拯救中国足球，来测测你的宝宝是什么奥运冠军';
-				this.showResult($('#r1'));
+				this.showResult($('#r1'),1);
 			}else if(list[1] === 'C'){
-				document.title = '我的宝宝未来会成为田径奥运冠军，来测测你的宝宝是什么奥运冠军';
-				this.showResult($('#r3'));
+				this.showResult($('#r3'),3);
 			}else if(list[2] === 'C'){
-				document.title = '我的宝宝未来会拯救中国足球，来测测你的宝宝是什么奥运冠军';
-				this.showResult($('#r1'));
+				this.showResult($('#r1'),1);
 			}else if(list[3] === 'A'){
-				document.title = '我的宝宝未来会成为游泳奥运冠军，来测测你的宝宝是什么奥运冠军';
-				this.showResult($('#r2'));
+				this.showResult($('#r2'),2);
 			}else if(list[5] === 'A'){
-				document.title = '我的宝宝未来会成为田径奥运冠军，来测测你的宝宝是什么奥运冠军';
-				this.showResult($('#r3'));
+				this.showResult($('#r3'),3);
 			}else{
-				document.title = '宝宝还有惊人潜能等你开发，来测测你的宝宝是什么奥运冠军';
-				this.showResult($('#r4'));
+				this.showResult($('#r4'),4);
 			}
 		},
-		showResult:function(element){
+		showResult:function(element,index){
+			document.title = this.results[index-1];
 			element.css('display','block');
 			TweenMax.from(element.find('.result-head'),0.5,{y:500,delay:0});
 			TweenMax.from(element.find('.result-title'),0.5,{y:500,delay:0.1});
@@ -185,7 +185,6 @@ function loadImage(list,index,callback){
 			callback();
 			return;
 		}
-
 		loadImage(list,++index,callback);
 	});
 }
