@@ -114,16 +114,22 @@ var attachFastClick = require('fastclick');
 		},
 		checkResult:function(list){
 			if(list[0] === 'C'){
+				document.title = '我的宝宝未来会拯救中国足球，来测测你的宝宝是什么奥运冠军';
 				this.showResult($('#r1'));
 			}else if(list[1] === 'C'){
+				document.title = '我的宝宝未来会成为田径奥运冠军，来测测你的宝宝是什么奥运冠军';
 				this.showResult($('#r3'));
 			}else if(list[2] === 'C'){
+				document.title = '我的宝宝未来会拯救中国足球，来测测你的宝宝是什么奥运冠军';
 				this.showResult($('#r1'));
 			}else if(list[3] === 'A'){
+				document.title = '我的宝宝未来会成为游泳奥运冠军，来测测你的宝宝是什么奥运冠军';
 				this.showResult($('#r2'));
 			}else if(list[5] === 'A'){
+				document.title = '我的宝宝未来会成为田径奥运冠军，来测测你的宝宝是什么奥运冠军';
 				this.showResult($('#r3'));
 			}else{
+				document.title = '宝宝还有惊人潜能等你开发，来测测你的宝宝是什么奥运冠军';
 				this.showResult($('#r4'));
 			}
 		},
