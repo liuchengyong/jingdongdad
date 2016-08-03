@@ -16,6 +16,6 @@ exports.setFrontSize = function() {
     }else{
     	document.documentElement.style.fontSize = deviceWidth / 8 + 'px';
     }
-    console.log(deviceWidth/deviceHeight - 0.56);
+    // console.log(deviceWidth/deviceHeight - 0.56);
 }
 
