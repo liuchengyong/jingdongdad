@@ -1,9 +1,6 @@
 
 var deviceAdapter = require('../common/deviceAdapter');
-var TweenMax = require('gsap');
-var $ = require('jquery');
 var attachFastClick = require('fastclick');
-
 
 (function(){
 	'use strict';
@@ -62,31 +59,32 @@ var attachFastClick = require('fastclick');
 			// console.log(element);
 			document.title = this.question[index-1];
 			element.css('display','block');
-			TweenMax.from(element.find('.question-title'),0.5,{y:1000,delay:0});
-			TweenMax.from(element.find('.question-text'),0.5,{y:1000,delay:0.1});
-			TweenMax.from(element.find('.question-gif'),0.5,{y:1000,delay:0.2});
-			TweenMax.from(element.find('.qestion-a'),0.5,{y:1000,delay:0.3});
-			TweenMax.from(element.find('.qestion-b'),0.5,{y:1000,delay:0.4});
-			TweenMax.from(element.find('.qestion-c'),0.5,{y:1000,delay:0.5});
+			
+			TweenLite.from(element.find('.question-title'),1,{y:1000});
+			TweenLite.from(element.find('.question-text'),0.9,{y:1000});
+			TweenLite.from(element.find('.question-gif'),0.8,{y:1000});
+			TweenLite.from(element.find('.qestion-a'),0.7,{y:1000});
+			TweenLite.from(element.find('.qestion-b'),0.6,{y:1000});
+			TweenLite.from(element.find('.qestion-c'),0.5,{y:1000});
 			
 			element.on('click',this.clickNextQuestion.bind(this,index));
 		},
 		hideQuestion:function(element,callback){
-			TweenMax.to(element.find('.question-title'),0.5,{y:-1000,delay:0});
-			TweenMax.to(element.find('.question-text'),0.5,{y:-1000,delay:0.1});
-			TweenMax.to(element.find('.question-gif'),0.5,{y:-1000,delay:0.2});
-			TweenMax.to(element.find('.qestion-a'),0.5,{y:-1000,delay:0.3});
-			TweenMax.to(element.find('.qestion-b'),0.5,{y:-1000,delay:0.4});
-			TweenMax.to(element.find('.qestion-c'),0.5,{y:-1000,delay:0.5,onComplete:callback});
+			TweenLite.to(element.find('.question-title'),0.5,{y:-500,opacity:0});
+			TweenLite.to(element.find('.question-text'),0.6,{y:-500,opacity:0});
+			TweenLite.to(element.find('.question-gif'),0.7,{y:-500,opacity:0});
+			TweenLite.to(element.find('.qestion-a'),0.8,{y:-500,opacity:0});
+			TweenLite.to(element.find('.qestion-b'),0.9,{y:-500,opacity:0});
+			TweenLite.to(element.find('.qestion-c'),1,{y:-500,opacity:0,onComplete:callback});
 			element.off();
 		},
 		resetQuestion:function(element){
-			TweenMax.set(element.find('.question-title'),{y:0});
-			TweenMax.set(element.find('.question-text'),{y:0});
-			TweenMax.set(element.find('.question-gif'),{y:0});
-			TweenMax.set(element.find('.qestion-a'),{y:0});
-			TweenMax.set(element.find('.qestion-b'),{y:0});
-			TweenMax.set(element.find('.qestion-c'),{y:0});
+			TweenLite.set(element.find('.question-title'),{y:0,opacity:1});
+			TweenLite.set(element.find('.question-text'),{y:0,opacity:1});
+			TweenLite.set(element.find('.question-gif'),{y:0,opacity:1});
+			TweenLite.set(element.find('.qestion-a'),{y:0,opacity:1});
+			TweenLite.set(element.find('.qestion-b'),{y:0,opacity:1});
+			TweenLite.set(element.find('.qestion-c'),{y:0,opacity:1});
 		},
 		clickNextQuestion:function(index,event){
 			var $target = $(event.target);
@@ -100,11 +98,13 @@ var attachFastClick = require('fastclick');
 			}else{
 				return;
 			}
-			TweenMax.to($target,0.1,{y:10,opacity:0.8,onComplete:function(){
+			TweenLite.to($target,0.2,{y:10,opacity:0.8});
+			// TweenLite.set($target,{y:10,opacity:0.8});
+			setTimeout(function(){
 				if(index < 6){
 					$this.hideQuestion($('#q' + index),function(){
 						$('#q' + index).css('display','none');
-						TweenMax.set($target,{y:0,opacity:1});
+						TweenLite.set($target,{y:0,opacity:1});
 						$this.resetQuestion($('#q' + index));
 						index++;
 						$('#q' + index).css('display','block');
@@ -114,13 +114,16 @@ var attachFastClick = require('fastclick');
 				}else{
 					$this.hideQuestion($('#q' + index),function(){
 						$('#q' + index).css('display','none');
-						TweenMax.set($target,{y:0,opacity:1});
+						TweenLite.set($target,{y:0,opacity:1});
 						$this.resetQuestion($('#q' + index));
 						console.log($this.answerList);
 						$this.checkResult($this.answerList);
 					});
 				}
-			}});
+			},400);
+			// TweenLite.to($target,0.3,{onComplete:function(){
+				
+			// }});
 			
 		},
 		checkResult:function(list){
@@ -141,13 +144,12 @@ var attachFastClick = require('fastclick');
 		showResult:function(element,index){
 			document.title = this.results[index-1];
 			element.css('display','block');
-			TweenMax.from(element.find('.result-head'),0.5,{y:500,delay:0});
-			TweenMax.from(element.find('.result-title'),0.5,{y:500,delay:0.1});
-			TweenMax.from(element.find('.result-gif'),0.5,{y:500,delay:0.2});
-			TweenMax.from(element.find('.result-award'),0.5,{y:500,delay:0.3});
-			TweenMax.from(element.find('.result-share'),0.5,{y:500,delay:0.4});
-			TweenMax.from(element.find('.result-again'),0.5,{y:500,delay:0.4});
-			TweenMax.from(element.find('.result-shop'),0.5,{y:500,delay:0.5});
+			TweenLite.from(element.find('.result-head'),1,{y:1000});
+			TweenLite.from(element.find('.result-title'),0.9,{y:1000});
+			TweenLite.from(element.find('.result-gif'),0.8,{y:1000});
+			TweenLite.from(element.find('.result-award'),0.7,{y:1000});
+			TweenLite.from(element.find('.btn-box'),0.6,{y:1000});
+			TweenLite.from(element.find('.result-shop'),0.5,{y:1000});
 			element.off();
 			element.on('click',this.userOperate.bind(this,element));
 		},
