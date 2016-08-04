@@ -1,5 +1,5 @@
 #!/bin/bash
-ssh -i ~/.ssh/LTEST_rsa root@128.199.143.197 bash -c "'
+ssh -i ./LTEST_rsa root@128.199.143.197 bash -c "'
 	cd /node/jingdongdad
 	git fetch --all
 	git reset --hard origin/master
