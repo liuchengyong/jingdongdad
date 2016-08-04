@@ -8,12 +8,13 @@ var attachFastClick = require('fastclick');
 	var App = root.App = window.App || {
 		name : 'dreamMoniter',
 		version : '0.0.1',
+		video:null,
 		resizeTimer : null,
 		answerList:[],
 		question:['怀宝宝的时候，Ta每天会踢妈妈的肚子几次？','当宝宝跑远了，你最后是怎么抓住Ta的','宝宝最爱玩的球类是？',
 		'给宝宝洗澡的时候，Ta','什么时候，你发现宝宝的弹跳能力很出色？','你是怎么发现宝宝有耐力的？'],
-		results:['我的宝宝未来会拯救中国足球，来测测你的宝宝是什么奥运冠军','我的宝宝未来会成为游泳奥运冠军，来测测你的宝宝是什么奥运冠军',
-		'我的宝宝未来会成为田径奥运冠军，来测测你的宝宝是什么奥运冠军','宝宝还有惊人潜能等你开发，来测测你的宝宝是什么奥运冠军'],
+		results:['你的宝宝未来会拯救中国足球，来测测你的宝宝是什么奥运冠军','你的宝宝未来会成为游泳奥运冠军，来测测你的宝宝是什么奥运冠军',
+		'你的宝宝未来会成为田径奥运冠军，来测测你的宝宝是什么奥运冠军','宝宝还有惊人潜能等你开发，来测测你的宝宝是什么奥运冠军'],
 		initialize: function(){
 			root.addEventListener('load',this.pageLoad.bind(this),false);
 			// this.showResult($('#r4'));
@@ -21,6 +22,8 @@ var attachFastClick = require('fastclick');
 		pageLoad:function(){
 			deviceAdapter.setFrontSize();
 			var imgs = document.querySelectorAll('img[data-src]');
+			this.video = document.getElementById("music");
+			this.video.load();
 			loadImage(imgs,0,this.pageStart.bind(this));
 		},
 		btnStartInit:function(){
@@ -52,7 +55,11 @@ var attachFastClick = require('fastclick');
 			attachFastClick(document.body);
 			$('#load').css('display','none');
 			$('#main').css('display','block');
+			$('.musicOpen').css('display','block');
 			$('#share').on('click',this.share.hide);
+			$('.musicOpen').on('click',this.videoEvent.close.bind(this));
+			$('.musicClose').on('click',this.videoEvent.open.bind(this));
+			this.video.play();
 			this.btnStartInit();
 		},
 		showQuestion:function(element,index){
@@ -110,7 +117,6 @@ var attachFastClick = require('fastclick');
 						$('#q' + index).css('display','block');
 						$this.showQuestion($('#q' + index),index);
 					})
-					
 				}else{
 					$this.hideQuestion($('#q' + index),function(){
 						$('#q' + index).css('display','none');
@@ -174,6 +180,19 @@ var attachFastClick = require('fastclick');
 			},
 			hide:function(){
 				document.getElementById('share').style.display = 'none';
+			}
+		},
+		videoEvent:{
+			close:function(){
+				$('.musicClose').css('display','block');
+				$('.musicOpen').css('display','none');
+				this.video.pause();
+			},
+			open:function(){
+				console.log('close');
+				$('.musicClose').css('display','none');
+				$('.musicOpen').css('display','block');
+				this.video.play();
 			}
 		}
 	};

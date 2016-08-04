@@ -39,6 +39,46 @@
 		text-align: center;
 	}
 }
+video{
+	display: none;
+}
+.musicOpen,
+.musicClose{
+	position: fixed;
+	display: none;
+	top:0.2rem;
+	right: 0.3rem;
+	width: 0.68rem;
+	height: 0.68rem;
+	z-index: 1999;
+}
+.musicOpen{
+	-webkit-animation: change 2s linear infinite;
+	-moz-animation: change 2s linear infinite;
+	-o-animation: change 2s linear infinite;
+	animation: change 2s linear infinite;
+}
+@-webkit-keyframes change {
+	0% {-webkit-transform: rotate(0deg);}	
+	100% {-webkit-transform: rotate(360deg);;}
+}
+
+@-moz-keyframes change {
+	0% {-moz-transform: rotate(0deg);}	
+	100% {-moz-transform: rotate(360deg);}
+}
+
+@-o-keyframes change {
+	0% {-o-transform: rotate(0deg);}	
+	100% {-o-transform: rotate(360deg);}
+}
+
+@keyframes change {
+	0% {transform: rotate(0deg);}	
+	100% {transform: rotate(360deg);}
+}
+
+
 
 .share{
 	position: fixed;
