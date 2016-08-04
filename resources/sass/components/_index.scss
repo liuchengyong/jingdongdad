@@ -249,10 +249,7 @@
 }
 .result-head{
 	top:0.5rem;
-	width:5.8rem;
-	height: 2.2rem; 
 	left: 50%;
-	margin-left: -2.9rem;
 }
 .result-title{
 	position: absolute;
@@ -327,6 +324,11 @@
 .result-1{
 	background-color: #a0db4a;
 	// display: block;	
+	.result-head{
+		width:5.8rem;
+		height: 2.2rem; 
+		margin-left: -2.9rem;
+	}
 	.result-title{
 		.result-title-text{
 			width: 4.5rem;
@@ -338,6 +340,11 @@
 .result-2{
 	background-color: #19b3fa;
 	// display: block;	
+	.result-head{
+		width:6.79rem;
+		height: 1.76rem; 
+		margin-left: -3.39rem;
+	}
 	.result-title{
 		.result-title-text{
 			top:0.6rem;
@@ -350,6 +357,11 @@
 .result-3{
 	background-color: #f8a23d;
 	// display: block;
+	.result-head{
+		width:7.10rem;
+		height: 1.88rem; 
+		margin-left: -3.55rem;
+	}
 	.result-title{
 		.result-title-text{
 			width: 4.34rem;
@@ -360,7 +372,12 @@
 }
 .result-4{
 	background-color: #dc362e;
-	// display: block;	
+	// display: block;
+	.result-head{
+		width:5.17rem;
+		height: 1.89rem; 
+		margin-left: -2.58rem;
+	}	
 	.result-title{
 		background: none;
 		left: 0;
