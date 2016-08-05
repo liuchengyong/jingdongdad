@@ -16,6 +16,7 @@
 	left: 0;
 	right: 0;
 	background-color: #06a7f2;
+	z-index: 100;
 	// display: none;
 	img{
 		position: absolute;
@@ -57,7 +58,7 @@ audio{
 	right: 0.3rem;
 	width: 0.68rem;
 	height: 0.68rem;
-	z-index: 1999;
+	z-index: 99;
 }
 .musicOpen{
 	backface-visibility: hidden;
@@ -117,12 +118,9 @@ audio{
 	left: 0;
 	right: 0;
 	background-color: rgba(0,0,0,0.8);
-	z-index: 2000;
+	z-index: 100;
 	display: none;
 	img{
-		position: absolute;
-		top:0;
-		left: 0;
 		display: block;
 		width: 100%;
 		height: auto;
@@ -145,7 +143,7 @@ audio{
 }
 
 .page{
-	position: absolute;
+	position: relative;
 	display: none;
 	width: 100%;
 	height: 100%;
@@ -154,8 +152,8 @@ audio{
 }
 
 .result-loading{
-	position: absolute;
-	display: none;
+	position: relative;
+	display: block;
 	width: 100%;
 	height: 100%;
 	.result-loading-back{
@@ -192,12 +190,15 @@ audio{
 
 // 问题
 .question{
-	position: absolute;
-	display: none;
+	position: relative;
+	display: block;
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
 	background-color: #06a7f2;
+	.question-gif{
+		display: none;
+	}
 }
 .question-title{
 	position: absolute;
@@ -273,7 +274,6 @@ audio{
 .question-4,
 .question-5,
 .question-6{
-	display: none;	
 	img{
 		position: absolute; 
 		display: block;
@@ -297,9 +297,9 @@ audio{
 }
 .question-3{
 	.question-text{
-		width:4.68rem;
-		height: 1.95rem; 
-		margin-left: -2.34rem;
+		width:5.29rem;
+		height: 1.85rem; 
+		margin-left: -2.64rem;
 	}
 }
 .question-4{
@@ -327,11 +327,14 @@ audio{
 }
 // -----  结果    -----------
 .result{
-	position: absolute;
-	display: none;
+	position: relative;
+	display: block;
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
+	.result-gif{
+		display: none;
+	}
 }
 .result-head{
 	top:0.5rem;
@@ -401,7 +404,6 @@ audio{
 .result-2,
 .result-3,
 .result-4{
-	display: none;	
 	img{
 		position: absolute; 
 		display: block;
