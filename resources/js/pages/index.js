@@ -61,18 +61,21 @@ var attachFastClick = require('fastclick');
 			$('.musicClose').on('click',this.videoEvent.open.bind(this));
 			this.video.play();
 			this.btnStartInit();
+
+			// $('#q1').css('display','block');
+			// this.showQuestion($('#q1'),1);
 		},
 		showQuestion:function(element,index){
 			// console.log(element);
 			document.title = this.question[index-1];
 			element.css('display','block');
 			
-			TweenLite.from(element.find('.question-title'),1,{y:1000});
-			TweenLite.from(element.find('.question-text'),0.9,{y:1000});
-			TweenLite.from(element.find('.question-gif'),0.8,{y:1000});
-			TweenLite.from(element.find('.qestion-a'),0.7,{y:1000});
-			TweenLite.from(element.find('.qestion-b'),0.6,{y:1000});
-			TweenLite.from(element.find('.qestion-c'),0.5,{y:1000});
+			TweenLite.from(element.find('.question-title'),1,{y:500});
+			TweenLite.from(element.find('.question-text'),0.9,{y:500});
+			TweenLite.from(element.find('.question-gif'),0.8,{y:500});
+			TweenLite.from(element.find('.qestion-a'),0.7,{y:500});
+			TweenLite.from(element.find('.qestion-b'),0.6,{y:500});
+			TweenLite.from(element.find('.qestion-c'),0.5,{y:500});
 			
 			element.on('click',this.clickNextQuestion.bind(this,index));
 		},
@@ -215,6 +218,8 @@ var attachFastClick = require('fastclick');
 
 function loadImage(list,index,callback){
 	var $img = $(list[index]);
+	var img = new Image();
+	img.src = 'http://obbbnmuwc.bkt.clouddn.com' + $img.attr('data-src');
 	// console.log('http://obbbnmuwc.bkt.clouddn.com' + $img.attr('data-src'));
 	$img.attr('src','http://obbbnmuwc.bkt.clouddn.com' + $img.attr('data-src'));
 	$img.on('load',function(){
