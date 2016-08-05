@@ -47,7 +47,7 @@ var attachFastClick = require('fastclick');
 			});
 			var $this = this;
 			$('#btnStart').on('click',function(){
-				$('#q1').css('display','block');
+				$('#main').remove();
 				$this.showQuestion($('#q1'),1);
 			});
 		},
@@ -61,32 +61,31 @@ var attachFastClick = require('fastclick');
 			$('.musicClose').on('click',this.videoEvent.open.bind(this));
 			this.video.play();
 			this.btnStartInit();
-
-			// $('#q1').css('display','block');
-			// this.showQuestion($('#q1'),1);
 		},
 		showQuestion:function(element,index){
 			// console.log(element);
 			document.title = this.question[index-1];
 			element.css('display','block');
-			
+			var $this = this;
+			// TweenLite.from(element,1,{y:500});
 			TweenLite.from(element.find('.question-title'),1,{y:500});
-			TweenLite.from(element.find('.question-text'),0.9,{y:500});
-			TweenLite.from(element.find('.question-gif'),0.8,{y:500});
-			TweenLite.from(element.find('.qestion-a'),0.7,{y:500});
-			TweenLite.from(element.find('.qestion-b'),0.6,{y:500});
-			TweenLite.from(element.find('.qestion-c'),0.5,{y:500});
-			
-			element.on('click',this.clickNextQuestion.bind(this,index));
+			TweenLite.from(element.find('.question-text'),1,{y:450});
+			TweenLite.from(element.find('.question-gif'),1,{y:400});
+			TweenLite.from(element.find('.qestion-a'),1,{y:350});
+			TweenLite.from(element.find('.qestion-b'),1,{y:300});
+			TweenLite.from(element.find('.qestion-c'),1,{y:300,onComplete:function(){
+				element.on('click',$this.clickNextQuestion.bind($this,index));
+			}});
 		},
 		hideQuestion:function(element,callback){
+			element.off();
+			// TweenLite.to(element,0.5,{y:-500,opacity:0});
 			TweenLite.to(element.find('.question-title'),0.5,{y:-500,opacity:0});
 			TweenLite.to(element.find('.question-text'),0.6,{y:-500,opacity:0});
 			TweenLite.to(element.find('.question-gif'),0.7,{y:-500,opacity:0});
 			TweenLite.to(element.find('.qestion-a'),0.8,{y:-500,opacity:0});
 			TweenLite.to(element.find('.qestion-b'),0.9,{y:-500,opacity:0});
-			TweenLite.to(element.find('.qestion-c'),1,{y:-500,opacity:0,onComplete:callback});
-			element.off();
+			TweenLite.to(element.find('.qestion-c'),1,{y:-500,opacity:0,onComplete:callback});		
 		},
 		resetQuestion:function(element){
 			TweenLite.set(element.find('.question-title'),{y:0,opacity:1});
@@ -108,22 +107,25 @@ var attachFastClick = require('fastclick');
 			}else{
 				return;
 			}
-			TweenLite.to($target,0.2,{y:10,opacity:0.8});
+			// TweenLite.to($target,0.2,{y:10,opacity:0.8});
 			// TweenLite.set($target,{y:10,opacity:0.8});
-			setTimeout(function(){
+			// setTimeout(function(){
+				
+			// },400);
+			TweenLite.to($target,0.6,{y:10,opacity:0.8,onComplete:function(){
 				if(index < 6){
 					$this.hideQuestion($('#q' + index),function(){
 						$('#q' + index).css('display','none');
 						TweenLite.set($target,{y:0,opacity:1});
+						// $('#q' + index).remove();
 						$this.resetQuestion($('#q' + index));
 						index++;
-						$('#q' + index).css('display','block');
 						$this.showQuestion($('#q' + index),index);
 					})
 				}else{
-
-
+					
 					$this.hideQuestion($('#q' + index),$this.showResultLoading.bind($this,index,$target));
+					
 					// $this.hideQuestion($('#q' + index),function(){
 					// 	$('#q' + index).css('display','none');
 					// 	TweenLite.set($target,{y:0,opacity:1});
@@ -134,10 +136,7 @@ var attachFastClick = require('fastclick');
 					// 	$this.checkResult($this.answerList);
 					// });
 				}
-			},400);
-			// TweenLite.to($target,0.3,{onComplete:function(){
-				
-			// }});
+			}});
 		},
 		showResultLoading:function(index,element){
 			var $this = this;
