@@ -74,12 +74,12 @@ var attachFastClick = require('fastclick');
 			TweenLite.from(element.find('.qestion-a'),1,{y:350});
 			TweenLite.from(element.find('.qestion-b'),1,{y:300});
 			TweenLite.from(element.find('.qestion-c'),1,{y:300,onComplete:function(){
+				element.data('isClick',false);
 				element.on('click',$this.clickNextQuestion.bind($this,index));
 			}});
 		},
 		hideQuestion:function(element,callback){
 			element.off();
-			// TweenLite.to(element,0.5,{y:-500,opacity:0});
 			TweenLite.to(element.find('.question-title'),0.5,{y:-500,opacity:0});
 			TweenLite.to(element.find('.question-text'),0.6,{y:-500,opacity:0});
 			TweenLite.to(element.find('.question-gif'),0.7,{y:-500,opacity:0});
@@ -96,6 +96,10 @@ var attachFastClick = require('fastclick');
 			TweenLite.set(element.find('.qestion-c'),{y:0,opacity:1});
 		},
 		clickNextQuestion:function(index,event){
+			if($('#q' + index).data('isClick')){
+				return;
+			}
+			$('#q' + index).data('isClick',true);
 			var $target = $(event.target);
 			var $this = this;
 			if($target.hasClass('qestion-a')){
@@ -123,7 +127,6 @@ var attachFastClick = require('fastclick');
 						$this.showQuestion($('#q' + index),index);
 					})
 				}else{
-					
 					$this.hideQuestion($('#q' + index),$this.showResultLoading.bind($this,index,$target));
 					
 					// $this.hideQuestion($('#q' + index),function(){
@@ -139,6 +142,7 @@ var attachFastClick = require('fastclick');
 			}});
 		},
 		showResultLoading:function(index,element){
+			console.log(this.answerList);
 			var $this = this;
 			$('#resultLoad').css('display','block');
 			setTimeout(function(){
