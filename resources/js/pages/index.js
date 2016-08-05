@@ -23,7 +23,6 @@ var attachFastClick = require('fastclick');
 			deviceAdapter.setFrontSize();
 			var imgs = document.querySelectorAll('img[data-src]');
 			this.video = document.getElementById("music");
-			this.video.load();
 			loadImage(imgs,0,this.pageStart.bind(this));
 		},
 		btnStartInit:function(){
