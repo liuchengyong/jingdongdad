@@ -34,6 +34,7 @@ var attachFastClick = require('fastclick');
 			$('#main img').css('left',imgLeft+'px');
 			$('.question-gif').css('left',imgLeft+'px');
 			$('.result-gif').css('left',imgLeft+'px');
+			$('.result-loading-content').css('left',imgLeft+'px');
 
 			var left = 206*S_width/750;
 			var bottom = 66*S_height/1334;
@@ -118,19 +119,34 @@ var attachFastClick = require('fastclick');
 						$this.showQuestion($('#q' + index),index);
 					})
 				}else{
-					$this.hideQuestion($('#q' + index),function(){
-						$('#q' + index).css('display','none');
-						TweenLite.set($target,{y:0,opacity:1});
-						$this.resetQuestion($('#q' + index));
-						console.log($this.answerList);
-						$this.checkResult($this.answerList);
-					});
+
+
+					$this.hideQuestion($('#q' + index),$this.showResultLoading.bind($this,index,$target));
+					// $this.hideQuestion($('#q' + index),function(){
+					// 	$('#q' + index).css('display','none');
+					// 	TweenLite.set($target,{y:0,opacity:1});
+					// 	$this.resetQuestion($('#q' + index));
+					// 	console.log($this.answerList);
+					// 	$this.showResultLoading();
+
+					// 	$this.checkResult($this.answerList);
+					// });
 				}
 			},400);
 			// TweenLite.to($target,0.3,{onComplete:function(){
 				
 			// }});
-			
+		},
+		showResultLoading:function(index,element){
+			var $this = this;
+			$('#resultLoad').css('display','block');
+			setTimeout(function(){
+				$('#resultLoad').css('display','none');
+				$('#q' + index).css('display','none');
+				TweenLite.set(element,{y:0,opacity:1});
+				$this.resetQuestion($('#q' + index));
+				$this.checkResult($this.answerList);
+			},2000);
 		},
 		checkResult:function(list){
 			if(list[0] === 'C'){
