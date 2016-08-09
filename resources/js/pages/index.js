@@ -11,9 +11,9 @@ var attachFastClick = require('fastclick');
 		video:null,
 		resizeTimer : null,
 		answerList:[],
-		question:['怀宝宝的时候，Ta每天会踢妈妈的肚子几次？','当宝宝跑远了，你最后是怎么抓住Ta的','宝宝最爱玩的球类是？',
+		questionTitle:['怀宝宝的时候，Ta每天会踢妈妈的肚子几次？','当宝宝跑远了，你最后是怎么抓住Ta的','宝宝最爱玩的球类是？',
 		'给宝宝洗澡的时候，Ta','什么时候，你发现宝宝的弹跳能力很出色？','你是怎么发现宝宝有耐力的？'],
-		results:['你的宝宝未来会拯救中国足球，来测测你的宝宝是什么奥运冠军','你的宝宝未来会成为游泳奥运冠军，来测测你的宝宝是什么奥运冠军',
+		resultsTitle:['你的宝宝未来会拯救中国足球，来测测你的宝宝是什么奥运冠军','你的宝宝未来会成为游泳奥运冠军，来测测你的宝宝是什么奥运冠军',
 		'你的宝宝未来会成为田径奥运冠军，来测测你的宝宝是什么奥运冠军','宝宝还有惊人潜能等你开发，来测测你的宝宝是什么奥运冠军'],
 		initialize: function(){
 			deviceAdapter.setFrontSize();
@@ -77,6 +77,8 @@ var attachFastClick = require('fastclick');
 			
 		},
 		showQuestion:function(index){
+			document.title = this.questionTitle[index-1];
+			wxShare({title:this.questionTitle[index-1]});
 			var element = this.questions[index-1];
 			this.root.append(element);
 			var $this = this;
@@ -127,7 +129,6 @@ var attachFastClick = require('fastclick');
 			}});
 		},
 		showResultLoading:function(index,element){
-			console.log(this.answerList);
 			this.questions[index-1].remove();
 			this.resetQuestion(index);
 			TweenMax.set(element,{y:0,opacity:1});
@@ -155,7 +156,8 @@ var attachFastClick = require('fastclick');
 			}
 		},
 		showResult:function(index){
-			console.log(this.questions);
+			document.title = this.resultsTitle[index-1];
+			wxShare({title:this.resultsTitle[index-1]});
 			var element = this.results[index-1];
 			var $this = this;
 			this.root.append(element);
@@ -205,7 +207,6 @@ var attachFastClick = require('fastclick');
 				this.video.pause();
 			},
 			open:function(){
-				console.log('close');
 				$('.musicClose').css('display','none');
 				$('.musicOpen').css('display','block');
 				this.video.play();
